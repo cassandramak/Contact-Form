@@ -1,0 +1,82 @@
+<!DOCTYPE html> <!--Beginning of HTML document-->
+<html lang="en"> <!--Specyfing the document's language-->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!--Set the viewport to support different devices-->
+    <title>Document</title>
+
+    <style> /*This is the CSS area*/
+    body {
+        font-family: verdana,sans-serif; /*Setting the font of the whole form to verdana, so that it's readable even with a small font*/
+    }
+</style>
+</head>
+<body> <!--All the form information is in the 'body'-->
+
+<h2>Contact Us</h2> <!--Using the heading tag fo the title of the form-->
+
+<form action="" method="post"> <!--Using the POST method so that the user's input is received on the backend-->
+    <label for="name">Name:</label>
+    <br> <!--Including breaks to separate the text-->
+    <input required type="text" id="name" name="name"> <!--Setting the input to text so that the user has somewhere to type. Also ensuring that variables have 'id' attributes-->
+    <br>
+    <br> <!--Included a second break for an even bigger gap between the former and next fields-->
+    <label for="email">Email:</label>
+    <br>
+    <input required type="text" id="email" name="email"> <!--Included the 'required' attribute to ensure that the field must be filled before submitting-->
+    <br>
+    <br>
+    <label for="p_number">Phone Number:</label> <!--Ensuring that there are label tags so that the user knows the specific information required-->
+    <br>
+    <input required type="tel" id="p_number" name="p_number" maxlength="10"> <!--Set the maximum length to 10 so that the user can't input more than 10 characters-->
+    <br>
+    <br>
+    <label for="message">Message:</label>
+    <br>
+    <textarea required id="message" rows="5" cols="20"></textarea> <!--Using a text area so that the user is able to type in multiple lines-->
+    <br>
+    <p>Preferred Contact Method:</p>
+    <label><input type="radio" name="pref" id="pref1" value="email"> Email</label> <!--Using radio buttons and assigning them the same name so that the user can only select one-->
+    <label><input type="radio" name="pref" id="pref2" value="phone"> Phone</label>
+    <label><input type="radio" name="pref" id="pref3" value="both"> Both</label>
+    <br>
+    <p>Inquiry Type:</p>
+        <select id="inquiry" name="inquiry"> <!--Using the select tag so that I generate a drop down menu-->
+            <option value="select_an_option" disabled selected hidden>Select an option</option> <!--Making this 'disabled selected hidden' so that it's unselectable, the default text displayed, and not among the menu options-->
+            <option value="general_inquiry" id="inquiry1">General Inquiry</option>
+            <option value="support_request" id="inquiry2">Support Request</option>
+            <option value="feedback" id="inquiry3">Feedback</option>
+        </select>
+        <br>
+        <br>
+    <button type="button" onclick="preview_data()">Preview</button> <!--Generating a 'preview' button so that the user can double-check their input before submitting-->
+    <br> <!--The 'preview_data()' function above will be defined under JavaScript so that an action is performed when the 'preview' button is clicked-->
+    <br>
+    <button type="submit">Submit</button> <!--Generating a 'submit' button for the user to hand in their inputs-->
+</form>
+
+<div id="preview" style="display:none;"> <!--Displaying the preview separately-->
+    <h3>Preview</h3>
+    <p><strong>Name:</strong> <span id="preview_name"></span></p> <!--The strong tag makes text bold-->
+    <p><strong>Email:</strong> <span id="preview_email"></span></p> <!--'Span' is just a style tag used to group things together-->
+    <p><strong>Phone Number:</strong> <span id="preview_number"></span></p>
+    <p><strong>Message:</strong> <span id="preview_message"></span></p>
+</div>
+
+<script> /*This is the JavaScript area*/
+    function preview_data() { /*Defining the function 'preview_data()' so that it actually does something*/
+        const name = document.getElementById("name").value; /*Using the GET method to display the user's input*/
+        const email = document.getElementById("email").value; /*Using the respective id attributes to retrieve the user's inputs*/
+        const p_number = document.getElementById("p_number").value;
+        const message = document.getElementById("message").value;
+
+        document.getElementById("preview_name").innerText = name;
+        document.getElementById("preview_email").innerText = email;
+        document.getElementById("preview_number").innerText = p_number;
+        document.getElementById("preview_message").innerText = message;
+        document.getElementById("preview").style.display = "block";
+    }
+</script>
+
+</body>
+</html> <!--End of HTML document-->
